@@ -31,8 +31,10 @@ router.post('/', async (req, res, next) => {
         res.cookie('access_token', toekn, {
             maxAge: 1000 * 60 * 30,
         });
-        
+
     } catch (e) {
         res.status(500).json(e);
     }
 });
+
+module.exports = router;
