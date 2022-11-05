@@ -22,8 +22,6 @@ router.post('/', async (req, res, next) => {
 
         const valid = await user.checkPassword(pw);
 
-        console.log(user.checkPassword);
-
         if (!valid) {
             res.json({ statusCode: 1 }); // statusCode 1: 비밀번호가 틀립니다.
             return;

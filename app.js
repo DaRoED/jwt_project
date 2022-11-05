@@ -25,8 +25,7 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(jwtMiddleware);
 
-app.use('/', indexRouter);
-app.use('/users', usersRouter);
+app.use('/login', indexRouter);
 app.use('/loginTest', loginRouter);
 app.use('/registerTest', registerRouter);
 
