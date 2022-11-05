@@ -8,7 +8,7 @@ router.post('/', async (req, res, next) => {
     console.dir(req.body);
 
     if (!id || !pw) {
-        res.json({ statusCode: 2 }); // statusCode 3: 아이디나 비밀번호를 찾을 수 없습니다.
+        res.json({ statusCode: 2 }); // statusCode 2: 아이디나 비밀번호를 찾을 수 없습니다.
         return;
     }
 
@@ -36,7 +36,7 @@ router.post('/', async (req, res, next) => {
         });
 
     } catch (e) {
-        console.log(e); // dfdf
+        console.log(e);
     }
 });
 

@@ -19,13 +19,12 @@ router.post('/', async (req, res, next) => {
     const result = schema.validateAsync(req.body);
     const { id, pw } = req.body;
 
-    result.catch((reason) => res.status(400).json(reason))
+    result.catch((reason) => res.json({ statusCode: 4 })) // statusCode 4: 유형성 검사 통과 X(3자 미만이거나 20자 초과이거나 영어나 숫자가 아님)
     
         .then(async () => {
             const exist = await User.findOne({ id });
 
-            if (exist) res.status(409)
-                .json('id already exist');
+            if (exist) res.json({ statusCode: 5 }); // statusCode 5: 이미 해당 아이디의 유저가 존재
         });
 
     const user = new User({ id });
