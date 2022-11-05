@@ -1,7 +1,7 @@
 // import
-import express from 'express';
-import Joi from 'joi';
-import User from '../public/javascripts/schema';
+const express = require('express');
+const Joi = require('joi');
+const User = require('../database/schema');
 // router
 const router = express.Router();
 // Post

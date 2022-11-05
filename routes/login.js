@@ -1,28 +1,31 @@
-import express from "express";
-import User from "../public/javascripts/schema";
-
+const express = require('express');
+const User = require('../database/schema');
 const router = express.Router();
 
 router.post('/', async (req, res, next) => {
     const { id, pw } = req.body;
 
+    console.dir(req.body);
+
     if (!id || !pw) {
-        res.status(401);
+        res.json({ statusCode: 2 }); // statusCode 3: 아이디나 비밀번호를 찾을 수 없습니다.
         return;
     }
 
     try {
-        const user = await User.findOne(id);
+        const user = await User.findOne({ id });
 
         if (!user) {
-            res.status(401);
+            res.json({ statusCode: 0 }); // statusCode 0: 해당 id의 유저를 찾을 수 없습니다.
             return;
         }
 
         const valid = await user.checkPassword(pw);
 
+        console.log(user.checkPassword);
+
         if (!valid) {
-            res.status(401);
+            res.json({ statusCode: 1 }); // statusCode 1: 비밀번호가 틀립니다.
             return;
         }
 
@@ -33,7 +36,7 @@ router.post('/', async (req, res, next) => {
         });
 
     } catch (e) {
-        res.status(500).json(e);
+        console.log(e);
     }
 });
 

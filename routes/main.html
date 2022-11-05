@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test</title>
+    <style>
+        * {
+    padding: 0;
+    margin: 0;
+    border: none;
+}
+
+body {
+    font-size: 14px;
+    font-family: 'Roboto', sans-serif;
+}
+
+.login-wrapper {
+    width: 400px;
+    height: 350px;
+    padding: 40px;
+    box-sizing: border-box;
+    margin: auto;
+}
+
+.login-wrapper > h2 {
+    font-size: 24px;
+    color: #6A24FE;
+    margin-bottom: 20px;
+}
+
+#login-form > input {
+    width: 100%;
+    height: 48px;
+    padding: 0 10px;
+    box-sizing: border-box;
+    margin-bottom: 16px;
+    border-radius: 6px;
+    background-color: #f8f8f8;
+}
+
+#login-form > input::placeholder {
+    color: #d2d2d2
+}
+
+#login-form > input[type="submit"] {
+    color: #fff;
+    font-size: 16px;
+    background-color: #6A24FE;
+    margin-top: 20px;
+}
+    </style>
+</head>
+
+<body>
+    <div class="login-wrapper">
+        <h2>로그인</h2>
+        <form id="login-form">
+            <input type="text" id="id" placeholder="Id" autoComplete="current-password">
+            <input type="password" id="password" placeholder="Password" autoComplete="current-password">
+            <input type="submit" id="login-submit" value="로그인">
+        </form>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script>
+        $(document).ready(() => {
+            $('#login-submit').click(() => {
+                axios({
+                    method: 'post',
+                    url: '/loginTest',
+                    data: {
+                        id: $('#id').val(),
+                        pw: $('#password').val(),
+                    }
+                }).then((response) => {
+                    console.dir(response);
+                })
+            });
+        });
+    </script>
+</body>
+
+</html>

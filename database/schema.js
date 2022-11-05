@@ -1,7 +1,7 @@
 // import
-import mongoose from 'mongoose';
-import { hashSync, compareSync } from 'bcrypt';
-import jwt from 'jsonwebtoken';
+const { hashSync, compareSync } = require('bcrypt');
+const jwt = require('jsonwebtoken');
+const mongoose = require('mongoose');
 // dotenv 불러오기(?)
 require('dotenv').config();
 // Schema 정의
@@ -44,4 +44,4 @@ UserSchema.methods.generateToken = function () {
 // Model 정의
 const UserModel = mongoose.model('sign-feature-test', UserSchema);
 // export
-export default UserModel
+module.exports = UserModel;
